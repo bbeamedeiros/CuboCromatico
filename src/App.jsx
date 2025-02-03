@@ -24,7 +24,7 @@ function App() {
     // Carrega o modelo 3D
     const loader = new GLTFLoader();
     loader.load(
-      '/rubiks_cube/scene.gltf', // Caminho para o modelo
+      '/cubo/cubopv1.glb', // Caminho para o modelo
       (gltf) => {
         model = gltf.scene; // Armazena o modelo na variável
         scene.add(model);
