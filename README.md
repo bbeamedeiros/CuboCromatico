@@ -5,7 +5,7 @@ Este projeto foi desenvolvido como parte da disciplina de Comunicação Visual I
 ## 👨‍🏫 Professor Responsável
 
 - **Paulo Victor Barbosa**
-    - Email: paulo.victor@ufc.br
+    - Email:paulo.victor@ufc.br
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -18,21 +18,21 @@ Este projeto foi desenvolvido como parte da disciplina de Comunicação Visual I
 ### Membros da Equipe
 
 - **Ana Beatriz Benevinuto Medeiros**
-    - Email: beatrizbemedeiros@alu.ufc.br
+    - Email:beatrizbemedeiros@alu.ufc.br
     - GitHub: [bbeamedeiros](https://github.com/bbeamedeiros)
 
 - **Lara Maria Gurgel Medeiros**
-    - Email: maria.oliveira@example.com
+    - Email:maria.oliveira@example.com
     - GitHub: [mariaoliveira](https://github.com/mariaoliveira)
 
 - **Natan Henrique Oliveira Façanha**
-    - Email: carlos.pereira@example.com
+    - Email:carlos.pereira@example.com
     - GitHub: [carlospereira](https://github.com/carlospereira)
 
 - **Melk Ineude Sousa Oliveira**
-    - Email: ana.souza@example.com
+    - Email:ana.souza@example.com
     - GitHub: [anasouza](https://github.com/anasouza)
 
 - **Yasmin Maiara Lima Almeida**
-    - Email: ana.souza@example.com
-    - GitHub: [anasouza](https://github.com/anasouza)
+    - Email:ana.souza@example.com
+    - GitHub:[anasouza](https://github.com/anasouza)
