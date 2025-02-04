@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -8,6 +8,8 @@ function App() {
   const [autoRotate, setAutoRotate] = useState(false); // Estado para controlar a rotação automática
   const [orbitEnabled, setOrbitEnabled] = useState(true); // Estado para controlar o OrbitControls
   const [ lightHelperEnabled, setLightHelperEnabled ] = useState(true); // Estado para controlar o helper da luz
+  const [gradientBackgroundEnabled, setGradientBackgroundEnabled] = useState(false); // Estado para controlar o fundo gradiente
+  
   useEffect(() => {
     // Configuração da cena, câmera e renderizador
     const scene = new THREE.Scene();
@@ -77,6 +79,83 @@ function App() {
 
     controls.update();
 
+
+    // Cores para cada canto da tela, dependendo da face visível do cubo
+    const gradients = {
+      front: [['#4A00A5', '#42265B'], ['#212C40', '#4A1F37'],['#CB007E', '#AC728C'] , ['red', '#3C0B16']],
+      back: [['#376834', '#5C9A53'], ['#018ADB', '#01AFDD'], ['#ECDD01', '#C4C579'], ['#D7CFBA', '#BDF3C5']],
+      left: [['#352A2A', '#4E3014'], ['#26490A', '#252A10'], ['#A91122', '#B75F2C'], ['#DDB106', '#A8A12D']],
+      right: [['#058BCB', '#316A9A'], ['#191e83', '#7F4A9A'], ['#F7F6EC', '#BBACD6'], ['#D50E84', '#9A5282']],
+      top: [['#BD1D76', '#D26477'], ['#851E28', '#BC5A45'], ['#FBF0EE', '#F7CDB3'], ['#DDC928', '#F8CE64']],
+      bottom: [['#64A1E2', '#5495B0'], ['#83B244', '#435A47'], ['#14223D', '#013A55'], ['#252413', '#45543D']],
+    };
+
+
+    const createGradientTexture = (color1, color2, color3, color4) => {
+      const size = 512; // Tamanho da textura
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+    
+      // Criamos quatro gradientes radiais, um para cada canto
+      const gradient1 = ctx.createRadialGradient(0, 0, size * 0.2, 0, 0, size * 0.6);
+      gradient1.addColorStop(0, color1[0]);
+      gradient1.addColorStop(1, color1[1]);
+    
+      const gradient2 = ctx.createRadialGradient(size, 0, size * 0.2, size, 0, size * 0.6);
+      gradient2.addColorStop(0, color2[0]);
+      gradient2.addColorStop(1, color2[1]);
+    
+      const gradient3 = ctx.createRadialGradient(0, size, size * 0.2, 0, size, size * 0.6);
+      gradient3.addColorStop(0, color3[0]);
+      gradient3.addColorStop(1, color3[1]);
+    
+      const gradient4 = ctx.createRadialGradient(size, size, size * 0.2, size, size, size * 0.6);
+      gradient4.addColorStop(0, color4[0]);
+      gradient4.addColorStop(1, color4[1]);
+    
+      // Aplicamos os gradientes ao canvas
+      ctx.fillStyle = gradient1;
+      ctx.fillRect(0, 0, size / 2, size / 2);
+    
+      ctx.fillStyle = gradient2;
+      ctx.fillRect(size / 2, 0, size / 2, size / 2);
+    
+      ctx.fillStyle = gradient3;
+      ctx.fillRect(0, size / 2, size / 2, size / 2);
+    
+      ctx.fillStyle = gradient4;
+      ctx.fillRect(size / 2, size / 2, size / 2, size / 2);
+    
+      return new THREE.CanvasTexture(canvas);
+    };
+    
+
+    // Atualiza o fundo da cena de acordo com a face visível do cubo
+    const updateBackground = () => {
+      if (!model) return;
+
+      const cameraDirection = new THREE.Vector3();
+      camera.getWorldDirection(cameraDirection);
+
+      const absX = Math.abs(cameraDirection.x);
+      const absY = Math.abs(cameraDirection.y);
+      const absZ = Math.abs(cameraDirection.z);
+
+      let dominantAxis = 'front';
+      if (absX > absY && absX > absZ) {
+        dominantAxis = cameraDirection.x > 0 ? 'right' : 'left';
+      } else if (absY > absX && absY > absZ) {
+        dominantAxis = cameraDirection.y > 0 ? 'top' : 'bottom';
+      } else {
+        dominantAxis = cameraDirection.z > 0 ? 'back' : 'front';
+      }
+
+      const colors = gradients[dominantAxis];
+      scene.background = createGradientTexture(colors[0], colors[1], colors[2], colors[3]);
+    };
+
     // Função de animação
     const animate = () => {
       requestAnimationFrame(animate);
@@ -86,6 +165,10 @@ function App() {
         model.rotation.x += 0.005;
         model.rotation.y += 0.01;
         // model.rotation.z += 0.005;
+      }
+
+      if (gradientBackgroundEnabled){
+        updateBackground();
       }
 
       controls.update();
@@ -106,7 +189,7 @@ function App() {
       window.removeEventListener('resize', handleResize);
       mountRef.current.removeChild(renderer.domElement);
     };
-  }, [autoRotate, orbitEnabled, lightHelperEnabled]); // Dependências do useEffect
+  }, [autoRotate, orbitEnabled, lightHelperEnabled, gradientBackgroundEnabled]); // Dependências do useEffect
 
   return (
     <div>
@@ -127,6 +210,11 @@ function App() {
           onClick={() => setLightHelperEnabled(!lightHelperEnabled)}
         >
           {lightHelperEnabled ? 'Desabilitar visualização das luzes' : 'Habilitar visualização das luzes'}
+        </button>
+        <button
+          onClick={() => setGradientBackgroundEnabled(!gradientBackgroundEnabled)}
+        >
+          {gradientBackgroundEnabled ? 'Desabilitar fundo gradiente' : 'Habilitar fundo gradiente'}
         </button>
       </div>
 
