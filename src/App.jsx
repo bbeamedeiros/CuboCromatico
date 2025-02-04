@@ -51,7 +51,7 @@ function App() {
       scene.add(directionalLightHelper);
     }
 
-    const light2 = new THREE.DirectionalLight(0xffffff, 3);
+    const light2 = new THREE.DirectionalLight(0xffffff, 2);
     light2.position.set(-10, 10, -10);
     light2.castShadow = true;
     scene.add(light2);
@@ -63,7 +63,7 @@ function App() {
     }
 
     // Adiciona uma luz ambiente
-    const ambientLight = new THREE.AmbientLight(0xffffff, 3);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
 
     // Adiciona controles de órbita
@@ -192,22 +192,88 @@ function App() {
   }, [autoRotate, orbitEnabled, lightHelperEnabled, gradientBackgroundEnabled]); // Dependências do useEffect
 
   return (
+  <div>
+    {/* Título e nomes */}
+    <div style={{ position: 'absolute', top: '15px', left: '10px', textAlign: 'initial', zIndex: 2 }}>
+      <h1 style={{
+        fontFamily: 'Arial, sans-serif', 
+        fontWeight: 'bold',             
+        fontSize: '36px',              
+        color: '#ffffff',              
+        margin: 0,                     
+      }}>
+        Momentos³
+      </h1>
+      <p style={{
+        fontFamily: 'Arial, sans-serif', 
+        fontWeight: 'normal',           
+        fontSize: '15px',                
+        color: '#ffffff',               
+        marginTop: '10px',                           
+      }}>
+        Por: Beatriz Benevinuto, Lara Maria, Natan Henrique, Melk Ineude, Yasmin Almeida.
+      </p>
+    </div>
     <div>
       {/* Botões para controlar a rotação e o OrbitControls */}
-      <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1 }}>
+      <div style={{ position: 'absolute', bottom: '15px', right: '10px', zIndex: 1, display: 'flex', flexDirection: 'column', gap:'5px' }}>
         <button
           onClick={() => setAutoRotate(!autoRotate)}
-          style={{ marginRight: '10px' }}
+          style={{  backgroundColor: 'transparent',
+            border: '2px solid #ffffff',
+            color: 'white',
+            padding: '5px',
+            textAlign: 'center',
+            fontSize: '15px',
+            margin: '4px',
+            opacity: 0.6,
+            transition: 'opacity 0.3s',
+            cursor: 'pointer',
+            borderRadius:'5px',
+            fontFamily: "monospace"
+          }}
+          onMouseEnter={(e) => e.target.style.opacity = 1}
+          onMouseLeave={(e) => e.target.style.opacity = 0.6}
         >
           {autoRotate ? 'Parar Rotação' : 'Girar Modelo'}
         </button>
         <button
           onClick={() => setOrbitEnabled(!orbitEnabled)}
+          style = {{ backgroundColor: 'transparent',
+            border: '2px solid #ffffff',
+            color: 'white',
+            padding: '5px',
+            textAlign: 'center',
+            fontSize: '15px',
+            margin: '4px',
+            opacity: 0.6,
+            transition: 'opacity 0.3s',
+            cursor: 'pointer',
+            borderRadius:'5px',
+            fontFamily: "monospace",
+          }}
+          onMouseEnter={(e) => e.target.style.opacity = 1}
+          onMouseLeave={(e) => e.target.style.opacity = 0.6}
         >
           {orbitEnabled ? 'Desabilitar Controle' : 'Habilitar Controle'}
         </button>
         <button
           onClick={() => setLightHelperEnabled(!lightHelperEnabled)}
+          style = {{ backgroundColor: 'transparent',
+            border: '2px solid #ffffff',
+            color: 'white',
+            padding: '5px',
+            textAlign: 'center',
+            fontSize: '15px',
+            margin: '4px',
+            opacity: 0.6,
+            transition: 'opacity 0.3s',
+            cursor: 'pointer',
+            borderRadius:'5px',
+            fontFamily: "monospace",
+            }}
+            onMouseEnter={(e) => e.target.style.opacity = 1}
+            onMouseLeave={(e) => e.target.style.opacity = 0.6}
         >
           {lightHelperEnabled ? 'Desabilitar visualização das luzes' : 'Habilitar visualização das luzes'}
         </button>
@@ -219,7 +285,7 @@ function App() {
       </div>
 
       {/* Elemento DOM onde o Three.js será renderizado */}
-      <div ref={mountRef} />
+      <div ref={mountRef} /></div>
     </div>
   );
 }
