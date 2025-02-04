@@ -218,10 +218,16 @@ function App() {
       {/* Botões para controlar a rotação e o OrbitControls */}
       <div style={{ position: 'absolute', bottom: '15px', right: '10px', zIndex: 1, display: 'flex', flexDirection: 'column', gap:'5px' }}>
         <button
-          onClick={() => setAutoRotate(!autoRotate)}
+          onClick={() => {
+            setAutoRotate(!autoRotate)
+            setGradientBackgroundEnabled(false)
+          }}
           style={{  backgroundColor: 'transparent',
-            border: '2px solid #ffffff',
-            color: 'white',
+            // caso o fundo gradiente esteja habilitado
+            // a cor da borda e do texto será preta, caso contrário, será branca
+            border: `2px solid ${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            color: `${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            fontWeight: 'bold',
             padding: '5px',
             textAlign: 'center',
             fontSize: '15px',
@@ -240,8 +246,11 @@ function App() {
         <button
           onClick={() => setOrbitEnabled(!orbitEnabled)}
           style = {{ backgroundColor: 'transparent',
-            border: '2px solid #ffffff',
-            color: 'white',
+            // caso o fundo gradiente esteja habilitado
+            // a cor da borda e do texto será preta, caso contrário, será branca
+            border: `2px solid ${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            color: `${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            fontWeight: 'bold',
             padding: '5px',
             textAlign: 'center',
             fontSize: '15px',
@@ -260,8 +269,11 @@ function App() {
         <button
           onClick={() => setLightHelperEnabled(!lightHelperEnabled)}
           style = {{ backgroundColor: 'transparent',
-            border: '2px solid #ffffff',
-            color: 'white',
+            // caso o fundo gradiente esteja habilitado
+            // a cor da borda e do texto será preta, caso contrário, será branca
+            border: `2px solid ${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            color: `${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            fontWeight: 'bold',
             padding: '5px',
             textAlign: 'center',
             fontSize: '15px',
@@ -278,7 +290,28 @@ function App() {
           {lightHelperEnabled ? 'Desabilitar visualização das luzes' : 'Habilitar visualização das luzes'}
         </button>
         <button
-          onClick={() => setGradientBackgroundEnabled(!gradientBackgroundEnabled)}
+          onClick={() => {
+            setGradientBackgroundEnabled(!gradientBackgroundEnabled)
+            setAutoRotate(false)
+          }}
+          style = {{ backgroundColor: 'transparent',
+            // caso o fundo gradiente esteja habilitado
+            // a cor da borda e do texto será preta, caso contrário, será branca
+            border: `2px solid ${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            color: `${gradientBackgroundEnabled ? 'black' : 'white'}`,
+            fontWeight: 'bold',
+            padding: '5px',
+            textAlign: 'center',
+            fontSize: '15px',
+            margin: '4px',
+            opacity: 0.6,
+            transition: 'opacity 0.3s',
+            cursor: 'pointer',
+            borderRadius:'5px',
+            fontFamily: "monospace",
+            }}
+            onMouseEnter={(e) => e.target.style.opacity = 1}
+            onMouseLeave={(e) => e.target.style.opacity = 0.6}
         >
           {gradientBackgroundEnabled ? 'Desabilitar fundo gradiente' : 'Habilitar fundo gradiente'}
         </button>
