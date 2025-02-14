@@ -7,7 +7,7 @@ function App() {
   const mountRef = useRef(null); // Referência para o elemento DOM onde o Three.js será renderizado
   const [autoRotate, setAutoRotate] = useState(false); // Estado para controlar a rotação automática
   const [orbitEnabled, setOrbitEnabled] = useState(true); // Estado para controlar o OrbitControls
-  const [ lightHelperEnabled, setLightHelperEnabled ] = useState(true); // Estado para controlar o helper da luz
+  const [ lightHelperEnabled, setLightHelperEnabled ] = useState(false); // Estado para controlar o helper da luz
   const [gradientBackgroundEnabled, setGradientBackgroundEnabled] = useState(false); // Estado para controlar o fundo gradiente
   
   useEffect(() => {
