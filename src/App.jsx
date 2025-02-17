@@ -211,7 +211,7 @@ function App() {
         color: '#ffffff',               
         marginTop: '10px',                           
       }}>
-        Equipe: Beatriz Benevinuto, Lara Maria, Natan Henrique, Melk Ineude, Yasmin Almeida.
+        Equipe: Beatriz Benevinuto, Lara Maria, Natan Henrique, Melk Ineude, Yasmin Almeida.<br></br>
         Este trabalho, na parte web, foi desenvolvido com o auxílio do graduando em Sistemas 
         de Informação: Venicius Feitosa.
       </p>
