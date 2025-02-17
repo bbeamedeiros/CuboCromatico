@@ -22,17 +22,16 @@ Este projeto foi desenvolvido como parte da disciplina de Comunicação Visual I
     - GitHub: [bbeamedeiros](https://github.com/bbeamedeiros)
 
 - **Lara Maria Gurgel Medeiros**
-    - Email:maria.oliveira@example.com
-    - GitHub: [mariaoliveira](https://github.com/mariaoliveira)
+    - Email:lara.mariagurgel1116@alu.ufc.br
+    - GitHub: [laralara1116](https://github.com/laralara1116)
 
 - **Natan Henrique Oliveira Façanha**
-    - Email:carlos.pereira@example.com
-    - GitHub: [carlospereira](https://github.com/carlospereira)
+    - Email:natanh2016@gmail.com
+    - GitHub: [henrii089](https://github.com/henrii089)
 
 - **Melk Ineude Sousa Oliveira**
-    - Email:ana.souza@example.com
-    - GitHub: [anasouza](https://github.com/anasouza)
-
+    - Email:oliveiramelk9124@gmail.com
+   
 - **Yasmin Maiara Lima Almeida**
-    - Email:ana.souza@example.com
-    - GitHub:[anasouza](https://github.com/anasouza)
+    - Email:yasminalmeida@alu.ufc.br
+    - GitHub:[yasminalmeidaa](https://github.com/yasminalmeidaa)

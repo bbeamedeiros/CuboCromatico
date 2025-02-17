@@ -211,7 +211,9 @@ function App() {
         color: '#ffffff',               
         marginTop: '10px',                           
       }}>
-        Por: Beatriz Benevinuto, Lara Maria, Natan Henrique, Melk Ineude, Yasmin Almeida.
+        Equipe: Beatriz Benevinuto, Lara Maria, Natan Henrique, Melk Ineude, Yasmin Almeida.
+        Este trabalho, na parte web, foi desenvolvido com o auxílio do graduando em Sistemas 
+        de Informação: Venicius Feitosa.
       </p>
     </div>
     <div>
